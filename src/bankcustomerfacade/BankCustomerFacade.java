@@ -9,10 +9,7 @@ import java.util.ArrayList;
 
 public class BankCustomerFacade {
     private ArrayList<CustomerIf> customers = new ArrayList();
-    BankCustomerFacade(CustomerIf cust){
-        customers.add(cust);
-
-
+    BankCustomerFacade(){
         ArrayList<AccountIf> cust1Accounts = new ArrayList();
         AccountIf acc = new BankAccount(111111);
         acc.deposit(500);
@@ -43,12 +40,26 @@ public class BankCustomerFacade {
         cust.getAccount(accNo);
     }
 
-    public CustomerIf getBanKCustomer(String custName){
+    public CustomerIf getBankCustomer(String custName){
         for(CustomerIf cus : customers){
             if(cus.getCustomerName().equals(custName)){
                return cus;
             }
         }
     }
+
+    // additional
+
+    public AccountIf createAccount(int[] accNo,int amt){
+        AccountIf acc = new BankAccount(accNo);
+        acc.deposit(amt);
+        return acc;
+    }
+
+     public CustomerIf createCustomer(String name, ArrayList<AccountIf> accounts){
+         CustomerIf cus = new BankCustomer(name, accounts);
+         customers.add(cus);
+         return cus;
+     }
 
 }
