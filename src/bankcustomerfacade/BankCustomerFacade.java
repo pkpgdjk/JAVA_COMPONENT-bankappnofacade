@@ -9,7 +9,8 @@ import java.util.ArrayList;
 
 public class BankCustomerFacade {
     private ArrayList<CustomerIf> customers = new ArrayList();
-    BankCustomerFacade(){
+    
+    public BankCustomerFacade() {
         ArrayList<AccountIf> cust1Accounts = new ArrayList();
         AccountIf acc = new BankAccount(111111);
         acc.deposit(500);
@@ -37,7 +38,7 @@ public class BankCustomerFacade {
     }
 
     public AccountIf getBankAccount(CustomerIf cust, int accNo){
-        cust.getAccount(accNo);
+        return cust.getAccount(accNo);
     }
 
     public CustomerIf getBankCustomer(String custName){
@@ -46,11 +47,13 @@ public class BankCustomerFacade {
                return cus;
             }
         }
+
+        return null;
     }
 
     // additional
 
-    public AccountIf createAccount(int[] accNo,int amt){
+    public AccountIf createAccount(int accNo,int amt){
         AccountIf acc = new BankAccount(accNo);
         acc.deposit(amt);
         return acc;
