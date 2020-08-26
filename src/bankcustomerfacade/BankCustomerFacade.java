@@ -50,19 +50,4 @@ public class BankCustomerFacade {
 
         return null;
     }
-
-    // additional
-
-    public AccountIf createAccount(int accNo,int amt){
-        AccountIf acc = new BankAccount(accNo);
-        acc.deposit(amt);
-        return acc;
-    }
-
-     public CustomerIf createCustomer(String name, ArrayList<AccountIf> accounts){
-         CustomerIf cus = new BankCustomer(name, accounts);
-         customers.add(cus);
-         return cus;
-     }
-
 }
