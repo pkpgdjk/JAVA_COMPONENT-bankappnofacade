@@ -21,19 +21,20 @@ public class BankFacade {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        BankCustomerFacade bankCustomerFacade = new BankCustomerFacade();
         ArrayList<AccountIf> cust1Accounts = new ArrayList();
-        AccountIf acc = new BankAccount(12345);
-        acc.deposit(500);
+        AccountIf acc;
+
+        acc = bankCustomerFacade.createAccount(12345,500);
         cust1Accounts.add(acc);
-        acc = new BankAccount(12346);
-        acc.deposit(1000);
+
+        acc = bankCustomerFacade.createAccount(12346,1000);
         cust1Accounts.add(acc);
-        CustomerIf cust1 = new BankCustomer("Snow", cust1Accounts);
+
+        CustomerIf cust1 = bankCustomerFacade.createCustomer("Snow", cust1Accounts);
         System.out.println("Customer and account information");
         System.out.println("Name = " + cust1.getCustomerName());
         System.out.println("Has " + cust1.getNumAccounts() + " accounts");
-
-        BankCustomerFacade bankCustomerFacade = new BankCustomerFacade(cust1);
 
         acc = bankCustomerFacade.getBankAccount(cust1, 12345);
         System.out.println("Account Number: " + acc.getAccountNumber() + " has " + acc.getBalance());
@@ -44,7 +45,7 @@ public class BankFacade {
         bankCustomerFacade.doDeposit(1000,cust1,12346);
         System.out.println("Account Number: " + acc.getAccountNumber() + " has " + acc.getBalance());
 
-        ArrayList<AccountIf> accounts = bankCustomerFacade.getBanKCustomer("Snow").getllAccounts();
+        ArrayList<AccountIf> accounts = bankCustomerFacade.getBankCustomer("Snow").getllAccounts();
         for(AccountIf account : accounts) {
             System.out.println("Account number " + account.getAccountNumber() + " has " + account.getBalance());
         }
